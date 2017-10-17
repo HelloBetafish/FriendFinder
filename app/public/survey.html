@@ -182,8 +182,15 @@
     newFriend.scores.push($("#q9").val());
     newFriend.scores.push($("#q10").val());
 
-    console.log(newFriend);
+    // console.log(newFriend);
 
+// $.ajax({
+//   type: 'POST',
+//   data: JSON.stringify(newFriend),
+//   contentType: 'application/json',
+//   url: '/api/friends'
+// });
+   
     $.post("/api/friends", newFriend)
     .done(function(data) {
    	  console.log(data);

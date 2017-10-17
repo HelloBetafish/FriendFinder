@@ -29,6 +29,7 @@ module.exports = function(app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
+
   // Create New Characters - takes in JSON input
   app.post("/api/friends", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
@@ -40,6 +41,34 @@ module.exports = function(app) {
     friends.push(newfriend);
 
     res.json(newfriend);
+
+    findMostCompat(newfriend);
+
   });
 };
+
+function findMostCompat(newfriend) {
+  var lowestdiff = 41;
+  var index = 0;
+
+  // console.log(friend.name);
+  // console.log(friend.photo);
+  // console.log(friend.scores[1]);
+  // console.log(friends[0].scores[0]);
+
+  for (var i = 0; i < (friends.length-1); i++){
+    var diff = 0
+    for (var x = 0 ; x < 10 ; x++){
+      diff += Math.abs(parseInt(newfriend.scores[x]) - parseInt(friends[i].scores[x]));
+    }
+    if (diff < lowestdiff) {
+      lowestdiff = diff;
+      index = i;
+    }
+  }
+  console.log("Friends Array Length: " + friends.length);
+  console.log("Lowest difference: " + lowestdiff);
+  console.log("Index: " + index);
+  console.log("Most compatible friend: " + friends[index].name);
+}
 
