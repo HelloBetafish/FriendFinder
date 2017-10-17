@@ -5,16 +5,16 @@ var friends = [
     name: "Bethany",
     photo: "https://i.pinimg.com/736x/dd/53/86/dd538655d02876ea6e9c73db8777ebca--black-betta-fish.jpg",
     scores: [
-      1,
       2,
-      3,
+      2,
       4,
+      4,
+      2,
       5,
-      6,
-      7,
-      8,
-      9,
-      10
+      1,
+      5,
+      1,
+      4
     ]
   }
 ];
