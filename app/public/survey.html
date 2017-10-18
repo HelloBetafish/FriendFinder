@@ -6,18 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Link to Bootstrap CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
-  <!--Link to CSS-->
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
-  <!-- Favicon http://findicons.com/icon/260843/train_transportation -->
-  <!-- <link rel="shortcut icon" href="assets/images/train_transportation.ico"> -->
+  <!-- From freefavicon.com https://openclipart.org/detail/246165/Fairy%20Sitting%20In%20Circle%20Silhouette-->
+  <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
-      <h1>Survey Time!</h1>
+      <h1>Survey Time</h1>
+      <h3>Let us help you find your new best friend!</h3>
       <br>
-      <a href="/" class="btn btn-lg btn-info" role="button">Home</a>
+      <a href="/" class="btn btn-lg btn-info active" role="button">Home</a>
   	</div>
   </div>
 
@@ -36,7 +34,7 @@
   	<div class="form-group">
       <!-- Questions from https://www.16personalities.com/free-personality-test -->
   	  <h2>Questions</h2>
-  	  <h4>Describe yourself using the statements below <br>on a scale from 5 (Exactly me!) to 1 (Not at all 
+  	  <h4>  -Describe yourself using the statements below <br> on a scale from 5 (Exactly me!) to 1 (Not at all 
   	  who I am!)</h4>
   	  <hr>
   	  <h3>Question 1</h3>
@@ -148,11 +146,30 @@
       	<option>1</option>
       </select>
     </div>
-    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" id="submit" class="btn btn-info btn-block active">Submit</button>
   </form>
   <br>
   <br>
   <br>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Your new friend is...</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -181,20 +198,19 @@
     newFriend.scores.push($("#q8").val());
     newFriend.scores.push($("#q9").val());
     newFriend.scores.push($("#q10").val());
-
-    // console.log(newFriend);
-
-// $.ajax({
-//   type: 'POST',
-//   data: JSON.stringify(newFriend),
-//   contentType: 'application/json',
-//   url: '/api/friends'
-// });
    
     $.post("/api/friends", newFriend)
     .done(function(data) {
    	  console.log(data);
+      var friend = $("<h1 class='text-center'>").html(data.name + 
+        "<br><br><img src=" + data.photo + " alt='Photo' class='img-fluid'>");
+      $('.modal-body').append(friend);
+      $('#friendModal').modal('show');
     });
+  });
+
+  $(".modal").on("hidden.bs.modal", function(){
+    $(".modal-body").html("");
   });
 
 </script>

@@ -40,9 +40,9 @@ module.exports = function(app) {
 
     friends.push(newfriend);
 
-    res.json(newfriend);
+    var mostCompat = findMostCompat(newfriend);
 
-    findMostCompat(newfriend);
+    res.json(mostCompat);
 
   });
 };
@@ -70,5 +70,6 @@ function findMostCompat(newfriend) {
   console.log("Lowest difference: " + lowestdiff);
   console.log("Index: " + index);
   console.log("Most compatible friend: " + friends[index].name);
+  return friends[index];
 }
 
