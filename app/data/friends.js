@@ -16,6 +16,22 @@ var friends = [
       1,
       4
     ]
+  },
+  {
+    name: "BB8",
+    photo: "http://vignette2.wikia.nocookie.net/starwars/images/6/68/BB8-Fathead.png/revision/latest",
+    scores: [
+      5,
+      1,
+      3,
+      5,
+      3,
+      1,
+      5,
+      3,
+      1,
+      1
+    ]
   }
 ];
 
