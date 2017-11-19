@@ -6,9 +6,9 @@ This is a "FriendFinder" application. This site takes in results from users' sur
 
 App uses Express to handle routing. 
 
-![Screenshot](app/public/assets/screenshot_survey.JPG)
+![Screenshot](app/public/screenshot_survey.JPG)
 
-![Screenshot](app/public/assets/screenshot_friend.JPG)
+![Screenshot](app/public/screenshot_friend.JPG)
 
 ## Authors
 
